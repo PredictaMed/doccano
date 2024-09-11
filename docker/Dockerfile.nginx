@@ -8,6 +8,14 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends git python3 make g++ ca-certificates \
  && git config --global url."https://github.com/".insteadOf git://github.com/ \
  && yarn install --network-timeout 1000000 \
+ && git clone --depth 1 https://github.com/PredictaMed/v-annotator.git /v-annotator
+
+WORKDIR /v-annotator
+ENV NODE_OPTIONS=--openssl-legacy-provider
+RUN yarn install && yarn build-bundle && yarn link
+
+WORKDIR /app
+RUN yarn link 'v-annotator' \
  && yarn build \
  && apt-get clean
 
