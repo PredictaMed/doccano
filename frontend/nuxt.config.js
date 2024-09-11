@@ -174,6 +174,14 @@ export default {
           name: '[path][name].[ext]'
         }
       })
+    },
+    babel: {
+      presets: [
+        ['@nuxt/babel-preset-app', {
+          corejs: { version: 3 }
+        }]
+      ],
+      plugins: ['@babel/plugin-proposal-nullish-coalescing-operator']
     }
   }
 }
