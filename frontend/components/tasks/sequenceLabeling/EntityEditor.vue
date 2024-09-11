@@ -40,6 +40,7 @@
 
 <script lang="ts">
 import VAnnotator from 'v-annotator'
+import 'v-annotator/dist/v-annotator.css'
 import type { PropType } from 'vue'
 import Vue from 'vue'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
