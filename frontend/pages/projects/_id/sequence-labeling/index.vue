@@ -14,9 +14,10 @@
       <toolbar-mobile :total="docs.count" class="d-flex d-sm-none" />
     </template>
     <template #content>
-      <v-card>
-        <div class="annotation-text pa-4">
-          <entity-editor
+      <div class="d-flex">
+        <v-card class="flex-grow-1">
+          <div class="annotation-text pa-4">
+            <entity-editor
             :dark="$vuetify.theme.dark"
             :rtl="isRTL"
             :text="doc.text"
@@ -34,13 +35,15 @@
             @click:relation="updateRelation"
             @contextmenu:entity="deleteSpan"
             @contextmenu:relation="deleteRelation"
-          />
-        </div>
-      </v-card>
+            />
+          </div>
+        </v-card>
+      </div>
     </template>
     <template #sidebar>
-      <annotation-progress :progress="progress" />
-      <v-card class="mt-4">
+      <div class="sticky-sidebar">
+        <annotation-progress :progress="progress" />
+        <v-card class="mt-4">
         <v-card-title>
           Label Types
           <v-spacer />
@@ -82,7 +85,8 @@
           </v-card-text>
         </v-expand-transition>
       </v-card>
-      <list-metadata :metadata="doc.meta" class="mt-4" />
+        <list-metadata :metadata="doc.meta" class="mt-4" />
+      </div>
     </template>
   </layout-text>
 </template>
@@ -318,5 +322,12 @@ export default {
   line-height: 2rem;
   font-family: 'Roboto', sans-serif !important;
   opacity: 0.6;
+}
+
+.sticky-sidebar {
+  position: sticky;
+  top: 20px;
+  height: calc(100vh - 40px);
+  overflow-y: auto;
 }
 </style>
